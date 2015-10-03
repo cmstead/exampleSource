@@ -1,3 +1,5 @@
+// This is created as an object so we can pass in mocks and fakes
+// for testing and abstraction purposes.
 function MyDataService(httpService, urlConstantsFactory){
     this.httpService = httpService;
     this.urlConstantsFactory = urlConstantsFactory;
@@ -16,7 +18,7 @@ MyDataService.prototype = {
     }
 };
 
-// This is now a standalone, testable function
+// This is a standalone, testable function
 function transformInboundData(callback, error, data){
     var finalData = !error ? inboundTransformationFunction(data) : data;
     
@@ -26,7 +28,7 @@ function transformInboundData(callback, error, data){
 
 // This is a wrapper around the original request 
 function inboundDataTransform(id, callback){
-    var transformCallback = transformData.bind(null, callback);
+    var transformCallback = transformInboundData.bind(null, callback);
     
     myDataServiceInstance.get(id, transformCallback);
 }
