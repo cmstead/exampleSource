@@ -32,7 +32,7 @@ function simpleMean (valueList){
 
 function normalizeValues (valueList) {
     var xbar = simpleMean(valueList);
-    return valueList.map(add.bind(null, -xbar), valueList);
+    return valueList.map(add.bind(null, -xbar));
 }
 
 function totalSumOfSquares(valueList){
