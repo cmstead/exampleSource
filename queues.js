@@ -42,7 +42,7 @@ logSquares(squareQueue);
 
 function Queue(){
     this.queueHead = null;
-    this.queueLast = null
+    this.queueLast = null;
 }
 
 Queue.prototype = {

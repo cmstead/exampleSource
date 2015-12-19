@@ -14,4 +14,3 @@ function complexGenericBehavior (fn, value) { /* Do complicated stuff here */ }
  * @returns {array} - List of {int} accountId
  */
 function getAccountIds (accountsByType) { /* function logic */ }
-

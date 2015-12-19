@@ -8,11 +8,11 @@ function MyDataService(httpService, urlConstantsFactory){
 MyDataService.prototype = {
     get: function(id, callback){
         var request = {
-                url: this.urlConstantsFactory.get('myDataUrl'),
-                data: {
-                    id: id
-                }
-            };
+			url: this.urlConstantsFactory.get('myDataUrl'),
+			data: {
+				id: id
+			}
+		};
         
         this.httpService.get(request, callback);
     }
