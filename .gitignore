@@ -2,6 +2,9 @@
 logs
 *.log
 
+# Approvals
+*.received.*
+
 # Runtime data
 pids
 *.pid
