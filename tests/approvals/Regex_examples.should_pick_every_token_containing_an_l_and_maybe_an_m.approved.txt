@@ -1,8 +1,0 @@
-[
-    "Lorem",
-    "dolor",
-    "elit.",
-    "vulputate.",
-    "lorem",
-    "vestibulum."
-]
