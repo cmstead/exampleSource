@@ -20,6 +20,11 @@
     "gulp": "^3.9.1",
     "gulp-mocha": "^2.2.0",
     "mocha": "^2.4.5",
-    "tsd": "^0.6.5"
+    "tsd": "^0.6.5",
+    "jasmine-node": "^1.14.5"
+  },
+  "main": "anonymous-function-issues.js",
+  "scripts": {
+    "test": "jasmine-node ./test/"
   }
 }
