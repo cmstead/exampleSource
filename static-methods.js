@@ -94,7 +94,7 @@
 (function () {
     'use strict';
 
-    function simpleMerge (baseObj, extensionObj){
+    function simpleMerge(baseObj, extensionObj) {
         return Object.keys(extensionObj).reduce(function (baseObj, propertyKey) {
             baseObj[propertyKey] = extensionObj[propertyKey];
             return baseObj;
@@ -117,7 +117,7 @@
         function getTotal(transactionList) {
             return transactionList.reduce(addToTotal, 0);
         };
-        
+
         return {
             getTotal: getTotal,
             removeItem: removeItem
@@ -143,3 +143,36 @@
 
 })();
 
+var getTransactionBehaviors = (function () {
+    'use strict';
+
+    function getTransactionBehaviors(transactionController) {
+        function isNotSelected(itemId, item) {
+            return item.id !== itemId;
+        }
+
+        function removeItem(itemId, transactionList) {
+            return transactionList.filter(isNotSelected.bind(null, itemId));
+        }
+
+        function addToTotal(total, item) {
+            return total + item.price * item.quantity;
+        }
+
+        function getTotal(transactionList) {
+            return transactionList.reduce(addToTotal, 0);
+        };
+
+        return {
+            getTotal: getTotal,
+            removeItem: removeItem
+        };
+    }
+
+    if(typeof module !== 'undefined' && typeof module.exports !== undefined) {
+        module.exports = getTransactionBehaviors;
+    }
+
+    return getTransactionBehaviors;
+
+})();
