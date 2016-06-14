@@ -21,8 +21,29 @@
         var argumentsToArray = slice.bind(null, 0);
         var dropFirstThree = slice.bind(null, 3);
 
+        function takeFrom1to3 (values){
+            return slice(1, values, 3);
+        }
+
     })();
 
+
+    (function () {
+        
+        function slice (start){
+            return function (end) {
+                return function (values) {
+                    var cleanEnd = pickEnd(end, values.length);
+                    return Array.prototype.slice.call(values, start, cleanEnd);
+                };
+            };
+        }
+
+        var argumentsToArray = slice(0)();
+        var dropFirstThree = slice(3)();
+        var takeFrom1to3 = slice(1)(3);
+
+    })();
 
 
     (function () {
@@ -36,6 +57,7 @@
 
         var argumentsToArray = slice(0);
         var dropFirstThree = slice(3);
+        var takeFrom1to3 = slice(1, 3);
 
     })();
 
