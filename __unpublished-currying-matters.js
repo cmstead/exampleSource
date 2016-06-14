@@ -2,25 +2,41 @@
 
 (function () {
     'use strict';
-    
-    function endPicker (end){
-        return function (values) {
-            var isInt = typeof end === number && end === Math.floor(end);
-            return isInt ? end : values.length;
-        }
+
+    function isInt(value) {
+        return typeof value === 'number' && value === Math.floor(value);
     }
-    
-    function slice (start){
-        return function (end) {
-            var pickEnd = endPicker(end);
-            
+
+    function pickEnd(end, valueLength) {
+        return isInt(end) ? end : valueLength;
+    }
+
+    (function () {
+
+        function slice(start, values, end) {
+            var cleanEnd = pickEnd(end, values.length);
+            return Array.prototype.slice.call(values, start, cleanEnd);
+        }
+
+        var argumentsToArray = slice.bind(null, 0);
+        var dropFirstThree = slice.bind(null, 3);
+
+    })();
+
+
+
+    (function () {
+
+        function slice(start, end) {
             return function (values) {
-                return Array.prototype.slice.call(values, start, pickEnd(values));
+                var cleanEnd = pickEnd(end, values.length);
+                return Array.prototype.slice.call(values, start, cleanEnd);
             };
         }
-    }
-    
-    var argumentsToArray = slice(0)();
-    var dropFirstThree = slice(3)();
-    
+
+        var argumentsToArray = slice(0);
+        var dropFirstThree = slice(3);
+
+    })();
+
 })();
