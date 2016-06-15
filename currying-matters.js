@@ -27,6 +27,36 @@
 
     })();
 
+    (function () {
+        function lambda (a, b, c) {
+            return op(a, b, c);
+        }
+        
+        function lambda (a) {
+            return function (b) {
+                return function (c) {
+                    return op(a, b, c);
+                };
+            };
+        }
+    })();
+
+    (function () {
+        
+        function slice (start){
+            return function (values) {
+                return function (end) {
+                    var cleanEnd = pickEnd(end, values.length);
+                    return Array.prototype.slice.call(values, start, cleanEnd);
+                };
+            };
+        }
+
+        var argumentsToArray = function (values) { return slice(0)(values)(); }; 
+        var dropFirstThree = function (values) { return slice(3)(values)(); }
+        var takeFrom1to3 = function (values) { return slice(1)(values)(3); };
+
+    })();
 
     (function () {
         
@@ -44,7 +74,6 @@
         var takeFrom1to3 = slice(1)(3);
 
     })();
-
 
     (function () {
 
